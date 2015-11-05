@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Práctica 1 - Calculadora</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="template/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="template/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="template/css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" type="text/css" href="css/estilos_calc.css">
+
+    <!-- JAVASCRIPT-->
+    <script type="text/javascript" src="js/calculadora.js"></script>
+
+	<!-- icono -->
+    <link rel="icon" type="image/png" href="img/faviconcalc.png" />
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Práctica Desarrollo Web en Entorno Cliente</a>
+            </div>
+            <!-- ESQUINA SUPERIOR DERECHA -->
+            <ul class="nav navbar-right top-nav"> 
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Isabel María Calvo Mateos</a>     
+                </li>
+            </ul>
+
+            <!-- MENÚ LATERAL -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">  
+
+                    <li>
+                        <a href="calculadora.html"><i class="fa fa-fw fa-table"></i>Calculadora</a>
+                    </li>
+
+                    <li>
+                        <a href="agenda.html"><i class="glyphicon glyphicon-phone-alt"></i> Agenda</a>
+                    </li>                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        
+        <!--CUERPO CENTRAL -->
+        <div id="page-wrapper">
+            <div class="panel panel-primary calculadora">
+
+                <div class="panel-heading">Calculadora</div>
+
+                <div class="panel-body">
+                    <form>
+                        <table>
+                            <!-- 1 FILA -->
+                            <tr>
+                                <td colspan="5">
+                                    <input type="text" name="resultado1" id="resultado1" value="" readonly>
+                                    <input type="text" name="resultado2" id="resultado2" value="0" readonly>
+                                </td>
+                            </tr>
+                            
+                            <!-- 2 FILA -->
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-deshabilitado" disabled>MC</button>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-deshabilitado" disabled>MR</button>
+                                </td>
+                                
+                                <td>
+                                    <button type="button" class="btn btn-deshabilitado" disabled>MS</button>
+                                </td>
+                                
+                                <td>
+                                    <button type="button" class="btn btn-deshabilitado" disabled>M+</button>
+                                </td>
+                                
+                                <td>
+                                    <button type="button" class="btn btn-deshabilitado" disabled>M-</button>
+                                </td>
+                            </tr>
+
+                            <!-- 3 FILA -->
+                            <tr>
+                                <td>
+                                    <button type="button" id="" name="flecha" class="btn btn-cambia_resultado" onclick="EjecutaBotonFlecha()">&larr;</button> <!-- flecha -->
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="ce" class="btn btn-cambia_resultado" onclick="EjecutaBotonCE()">CE</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="c" class="btn btn-cambia_resultado" onclick="EjecutaBotonC()">C</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="masmenos" class="btn btn-operacion" onclick="EjecutaBotonMasMenos()">&plusmn;</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="raiz" class="btn btn-operacion" onclick="CalculaRaiz()">&#8730
+                                    </button> <!--Raíz-->
+                                </td>
+                            </tr>
+                            
+                            <!-- 4 FILA -->
+                            <tr>
+                                <td>
+                                    <button type="button" id="siete" name="siete" class="btn btn-numeros" onClick="EjecutaNumeros(7)">7</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="ocho" name="ocho" class="btn btn-numeros" onClick="EjecutaNumeros(8)">8</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="nueve" name="nueve" class="btn btn-numeros" onClick="EjecutaNumeros(9)">9</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="/" class="btn btn-operacion" onClick="EjecutaOperacion('/')">/</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="porcentaje" class="btn btn-operacion" onclick="CalculaPorcentaje()">%</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- 5 FILA -->
+                            <tr>
+                                <td>
+                                    <button type="button" id="cuatro" name="cuatro" class="btn btn-numeros" onClick="EjecutaNumeros(4)">4</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="cinco" name="cinco" class="btn btn-numeros" onClick="EjecutaNumeros(5)">5</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="seis" name="seis" class="btn btn-numeros" onClick="EjecutaNumeros(6)">6</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="multiplicar" class="btn btn-operacion" onClick="EjecutaOperacion('*')">*</button>
+                                </td>
+                                <td>
+                                    <button type="button" id="" name="unox" class="btn  btn-operacion" onclick="CalculaDividirEntreX()">1/x</button>
+                                </td>
+                            </tr>
+
+                            <!-- 6 FILA -->
+                            <tr>
+                                <td>
+                                    <button type="button" id="uno" name="uno" class="btn btn-numeros" onClick="EjecutaNumeros(1)">1</button>
+                                </td>
+
+                                <td>
+                                    <button type="button" id="dos" name="dos" class="btn btn-numeros" onClick="EjecutaNumeros(2)">2</button>
+                                </td>
+
+                                <td>
+                                    <button type="button" id="tres" name="tres" class="btn btn-numeros" onClick="EjecutaNumeros(3)">3</button>
+                                </td>
+
+                                <td>
+                                    <button type="button" id="" name="restar"  class="btn btn-operacion" onClick="EjecutaOperacion('-')">-</button>
+                                </td>
+
+                                <td rowspan="2">
+                                    <button type="button" id="" name="igual"  class="btn btn-igual" onClick="CalcularRtoFinal()">=</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- 7 FILA -->
+                            <tr>
+                                <td colspan="2">
+                                    <button type="button" id="cero" name="cero" class="btn btn-cero" onClick="EjecutaNumeros(0)">0</button>
+                                </td>
+
+                                <td>
+                                    <button type="button" id="punto" name="punto" class="btn btn-numeros" onclick="MuestraPunto()">.</button>
+                                </td>
+
+                                <td>
+                                    <button type="button" id="" name="sumar" class="btn btn-operacion" onClick="EjecutaOperacion('+')">+</button>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+</body>
+
+</html>

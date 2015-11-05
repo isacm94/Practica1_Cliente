@@ -1,0 +1,222 @@
+.calculadora{
+  margin-top: 10%; 
+  margin-bottom: 25%; 
+  margin-left: 35%; 
+  width: 32%;
+}
+
+/*TABLA*/
+td, tr, table{
+ border: 0px solid white;
+ border-collapse: collapse;
+}
+
+table{
+	width: 300px; /*ancho*/
+	height: 380px;/*altura*/
+  margin: 0 auto;/*para centrarlo*/
+}
+
+/*input*/
+input{
+  width: 300px; /*ancho*/;    
+  text-align: right; 
+  border-style: solid; 
+  border-width: 0px; 
+  border-radius: 2px; 
+  border-color: #fff; 
+  font-family: sans-serif; 
+  text-shadow: 0px 0px 0px rgba(42,42,42,.62); 
+  padding: 1px; 
+}
+
+#resultado1{   
+  color: #A0A0A0;/*gris*/
+  font-weight: normal; 
+  font-size: 20px;    
+} 
+
+#resultado2{  
+  font-weight: bold; 
+  font-size: 40px;    
+} 
+
+/*BOTON NUMEROS*/
+.btn-numeros { 
+  color: #ffffff; 
+  background-color: #069E91; 
+  border-color: #FFFFFF; 
+  width: 55px;
+  height: 38px;
+} 
+ 
+.btn-numeros:hover, 
+.btn-numeros:focus, 
+.btn-numeros:active, 
+.btn-numeros.active, 
+.open .dropdown-toggle.btn-numeros,
+
+.btn-cero:hover, 
+.btn-cero:focus, 
+.btn-cero:active, 
+.btn-cero.active, 
+.open .dropdown-toggle.btn-cero  { 
+  color: #ffffff; 
+  background-color: #247A80; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-numeros:active, 
+.btn-numeros.active, 
+.open .dropdown-toggle.btn-numeros,
+.btn-cero:active, 
+.btn-cero.active, 
+.open .dropdown-toggle.btn-cero { 
+  background-image: none; 
+} 
+ 
+
+.btn-numeros .badge,
+.btn-cero .badge { 
+  color: #069E91; 
+  background-color: #ffffff; 
+}
+
+/*BOTON CERO*/
+.btn-cero { 
+  color: #ffffff; 
+  background-color: #069E91; 
+  border-color: #FFFFFF; 
+  width: 122px;
+  height: 38px;
+}  
+/*BOTÓN DE OPERACIONES*/
+.btn-operacion { 
+  color: #FFFFFF; 
+  background-color: #F0AD4E; 
+  border-color: #FFFFFF; 
+  width: 50px;/*ancho*/
+  height: 38px;/*alto*/
+} 
+ 
+.btn-operacion:hover, 
+.btn-operacion:focus, 
+.btn-operacion:active, 
+.btn-operacion.active, 
+.open .dropdown-toggle.btn-operacion { 
+  color: #FFFFFF; 
+  background-color: #D99C46; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-operacion:active, 
+.btn-operacion.active, 
+.open .dropdown-toggle.btn-operacion { 
+  background-image: none; 
+}  
+ 
+.btn-operacion .badge { 
+  color: #F0AD4E; 
+  background-color: #FFFFFF; 
+}
+
+/*BOTÓN IGUAL*/
+.btn-igual { 
+  color: #FFFFFF; 
+  background-color: #74B05D; 
+  border-color: #FFFFFF; 
+  width: 50px;/*ancho*/
+  height: 88px;/*alto*/
+} 
+ 
+.btn-igual:hover, 
+.btn-igual:focus, 
+.btn-igual:active, 
+.btn-igual.active, 
+.open .dropdown-toggle.btn-igual { 
+  color: #FFFFFF; 
+  background-color: #61944D; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-igual:active, 
+.btn-igual.active, 
+.open .dropdown-toggle.btn-igual { 
+  background-image: none; 
+} 
+ 
+.btn-igual .badge { 
+  color: #74B05D; 
+  background-color: #FFFFFF; 
+}
+
+/*BOTON CAMBIAR_RESULTADO - flecha, C, CE*/
+.btn-cambia_resultado { 
+  color: #FFFFFF; 
+  background-color: #CC6257; 
+  border-color: #FFFFFF; 
+  width: 54px;/*ancho*/
+  height: 38px;/*alto*/
+} 
+ 
+.btn-cambia_resultado:hover, 
+.btn-cambia_resultado:focus, 
+.btn-cambia_resultado:active, 
+.btn-cambia_resultado.active, 
+.open .dropdown-toggle.btn-cambia_resultado { 
+  color: #FFFFFF; 
+  background-color: #A35148; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-cambia_resultado:active, 
+.btn-cambia_resultado.active, 
+.open .dropdown-toggle.btn-cambia_resultado { 
+  background-image: none; 
+} 
+ 
+.btn-cambia_resultado .badge { 
+  color: #CC6257; 
+  background-color: #FFFFFF; 
+}
+
+/*BOTONES DESCATIVADOS MC, MR, MS, M+, M-*/
+.btn-deshabilitado { 
+  color: #959595; 
+  background-color: #E9E9E9; 
+  border-color: #FFFFFF; 
+  width: 52px;/*ancho*/
+  height: 38px;/*alto*/
+} 
+ 
+.btn-deshabilitado:hover, 
+.btn-deshabilitado:focus, 
+.open .dropdown-toggle.btn-deshabilitado { 
+  color: #959595; 
+  background-color: #E9E9E9; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-deshabilitado.disabled, 
+.btn-deshabilitado[disabled], 
+fieldset[disabled] .btn-deshabilitado, 
+.btn-deshabilitado.disabled:hover, 
+.btn-deshabilitado[disabled]:hover, 
+fieldset[disabled] .btn-deshabilitado:hover, 
+.btn-deshabilitado.disabled:focus, 
+.btn-deshabilitado[disabled]:focus, 
+fieldset[disabled] .btn-deshabilitado:focus, 
+.btn-deshabilitado.disabled:active, 
+.btn-deshabilitado[disabled]:active, 
+fieldset[disabled] .btn-deshabilitado:active, 
+.btn-deshabilitado.disabled.active, 
+.btn-deshabilitado[disabled].active, 
+fieldset[disabled] .btn-deshabilitado.active { 
+  background-color: #E9E9E9; 
+  border-color: #FFFFFF; 
+} 
+ 
+.btn-deshabilitado .badge { 
+  color: #E9E9E9; 
+  background-color: #959595; 
+}
