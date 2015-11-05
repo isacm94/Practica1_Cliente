@@ -189,8 +189,8 @@ function ValidacionCorrecta(){
 	}
 
 	
-	if(! ValidaTelefono(LabelError))
-		correcto = false;
+	/*if(! ValidaTelefono(LabelError))
+		correcto = false;*/
 
 	return correcto;
 }

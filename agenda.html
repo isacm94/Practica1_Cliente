@@ -72,154 +72,175 @@
         
         <!--CUERPO CENTRAL -->
         <div id="page-wrapper">
-            
-            <div class="panel panel-primary agenda">
-                
-                <div class="panel-heading">Agenda</div>
-                <div class="panel-body"><!-- cuerpo panel principal -->
-                    
-                        <!-- PRIMERA LINEA - REGISTRO MOSTRAR -->
-                        <div class="panel panel-success registro"><!-- REGISTRO -->
-                            <div class="panel-heading">Registro</div>
-                            <div class="panel-body"> <!-- cuerpo panel registro -->
-                                <div style="margin-left: 49px;">
+            <div class="row">
+                <div class="col-md-2"></div>
 
-                                    <button type="button" class="btn btn-default" id="btn_inicioregistro" onclick="BotonInicioRegistro()" title="Inicio Registro"><span class="glyphicon glyphicon-backward"></span></button>
+                <div class="col-md-8">
+                    <div class="panel panel-primary">   
+                        <div class="panel-heading">Agenda</div>
+                            <div class="row">
+                                <div class="panel-body" style="padding: 5%;"><!-- cuerpo panel principal -->
+                                    
+                                        <!-- PRIMERA LINEA - REGISTRO MOSTRAR -->
+                                        <div class="row">
+                                            <div class="col-md-7">
 
-                                    <button type="button" class="btn btn-default" id="btn_anterior" onclick="BotonAnterior()" title="Anterior"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                                                <div class="panel panel-success" style="height: 110px;"><!-- REGISTRO -->
+                                                    <div class="panel-heading">Registro</div>
+                                                   
+                                                        <div class="panel-body"> <!-- cuerpo panel registro -->
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-9">
+                                                                    <button type="button" class="btn btn-default" id="btn_inicioregistro" onclick="BotonInicioRegistro()" title="Inicio Registro"><span class="glyphicon glyphicon-backward"></span></button>
 
-                                    <label class="control-label">&nbsp; 
-                                        <span name="inicio" id="inicio"> 1 </span>
-                                            de 
-                                        <span name="fin" id="fin"> </span>
-                                    &nbsp;</label>
+                                                                    <button type="button" class="btn btn-default" id="btn_anterior" onclick="BotonAnterior()" title="Anterior"><span class="glyphicon glyphicon-chevron-left"></span></button>
+
+                                                                    <label class="control-label">&nbsp; 
+                                                                        <span name="inicio" id="inicio"> 1 </span>
+                                                                            de 
+                                                                        <span name="fin" id="fin"> </span>
+                                                                    &nbsp;</label>
 
 
-                                    <button type="button" class="btn btn-default" id="btn_siguiente" onclick="BotonSiguiente()" title="Siguiente"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                                                                    <button type="button" class="btn btn-default" id="btn_siguiente" onclick="BotonSiguiente()" title="Siguiente"><span class="glyphicon glyphicon-chevron-right"></span></button>
 
-                                    <button type="button" class="btn btn-default" id="btn_finregistro" onclick="BotonFinRegistro()" title="Fin Registro"><span class="glyphicon glyphicon-forward"></span></button>
-                                
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-warning mostrar"><!-- MOSTRAR -->
-                            <div class="panel-heading">Mostrar</div>
-                            <div class="panel-body"> <!-- cuerpo panel mostrar -->
-                                
-                                <div class="form-group">
-                                    <label class="col-lg-4 control-label">Nº&nbsp;entrada</label>
-                                    <div class="col-lg-4">
-                                        <input type="text" class="form-control" name="numEntrada" id="numEntrada" value="" maxlength="3">
-                                    </div>
-
-                                    <button type="button" class="btn btn-default" onclick="getContacto()" title="Ver Contacto">
-                                        <span class="glyphicon glyphicon-eye-open"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SEGUNDA LINEA - EDICIÓN -->
-                        <div class="panel panel-danger edicion"><!-- EDICION -->
-                            <div class="panel-heading">Edición</div>
-                            <div class="panel-body"> <!-- cuerpo panel edicion -->
-                                
-                                    <form class="form-horizontal" role="form">
-
-                                        <div class="edicion_derecha"> <!-- DERECHA -->
-                                            <div class="form-group">
-
-                                                <label class="col-lg-3 control-label">Nombre</label>
-
-                                                <div class="col-lg-7">
-                                                    <input type="text" class="form-control" name="nombre" id="nombre" value="">
-                                                </div>
-
-                                                <div id="cajanombreerror">
+                                                                    <button type="button" class="btn btn-default" id="btn_finregistro" onclick="BotonFinRegistro()" title="Fin Registro"><span class="glyphicon glyphicon-forward"></span></button>
+                                                            </div>
+                                                            <div class="col-md-1"></div>
+                                                            </div>
+                                                        </div>
                                                     
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="col-md-5">
+                                                <div class="panel panel-warning" style="height: 110px;"><!-- MOSTRAR -->
+                                                    <div class="panel-heading">Mostrar</div>
+                                                        <div class="row">
+                                                            <div class="panel-body"> <!-- cuerpo panel mostrar -->
+                                                                
+                                                                <label class="col-lg-4 control-label">Nº&nbsp;entrada</label>
+                                                                <div class="col-lg-4">
+                                                                    <input type="text" class="form-control" name="numEntrada" id="numEntrada" value="" maxlength="3">
+                                                                </div>
 
-                                                <label class="col-lg-3 control-label">Apellidos</label>
-
-                                                <div class="col-lg-7">
-                                                  <input type="text" class="form-control" name="apellidos" id="apellidos"  value="">
+                                                                <button type="button" class="btn btn-default" onclick="getContacto()" title="Ver Contacto">
+                                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                                </button>
+                                                                
+                                                            </div>
+                                                        </div>
                                                 </div>
-
-                                                <div id="cajaapellidoserror">
-                                                    
-                                                </div>
-                                            </div>                                        
-
-                                        
-                                            <div class="form-group">
-
-                                                <label class="col-lg-3 control-label">Teléfono</label>
-
-                                                <div class="col-lg-5">
-                                                    <input type="text" class="form-control" name="telefono" id="telefono"  value="">
-                                                </div>
+                                            </div>
+                                        </div> <!-- row-->
+                                        <!-- SEGUNDA LINEA - EDICIÓN -->
+                                        <div class="panel panel-danger"><!-- EDICION -->
+                                            <div class="panel-heading">Edición</div>
+                                            <div class="panel-body"> <!-- cuerpo panel edicion -->
                                                 
-                                                <div id="cajatelefonoerror">
-                                                    
-                                                </div>
+                                                    <form class="form-horizontal" role="form">
+
+                                                        <div class="row"> 
+                                                            <!-- DERECHA -->
+                                                            <div class="col-md-9">
+                                                                <div class="form-group">
+
+                                                                    <label class="col-lg-3 control-label">Nombre</label>
+
+                                                                    <div class="col-lg-7">
+                                                                        <input type="text" class="form-control" name="nombre" id="nombre" value="">
+                                                                    </div>
+
+                                                                    <div id="cajanombreerror">
+                                                                        
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+
+                                                                    <label class="col-lg-3 control-label">Apellidos</label>
+
+                                                                    <div class="col-lg-7">
+                                                                      <input type="text" class="form-control" name="apellidos" id="apellidos"  value="">
+                                                                    </div>
+
+                                                                    <div id="cajaapellidoserror">
+                                                                        
+                                                                    </div>
+                                                                </div>                                        
+
+                                                            
+                                                                <div class="form-group">
+
+                                                                    <label class="col-lg-3 control-label">Teléfono</label>
+
+                                                                    <div class="col-lg-5">
+                                                                        <input type="text" class="form-control" name="telefono" id="telefono"  value="">
+                                                                    </div>
+                                                                    
+                                                                    <div id="cajatelefonoerror">
+                                                                        
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group">
+
+                                                                    <label class="col-lg-3 control-label">F.&nbsp;Nacimiento</label>
+
+                                                                    <div class="col-lg-5">
+                                                                      <input type="text" class="form-control" name="fechanac" id="fechanac" value="">
+                                                                    </div>
+
+                                                                    <div id="cajafechanacerror">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--IZQUIERDA -->
+                                                            <div class="col-md-2">
+                                                                <button type="button" class="btn btn-nuevo" onclick="NuevoContacto()" title="Nuevo Contacto"><span class="glyphicon glyphicon-plus"></span> Nuevo</button> 
+                                                                        
+                                                                <button type="button" class="btn btn-guardar" onclick="GuardarContacto()" title="Guardar Contacto"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button> 
+                                                            </div> 
+                                                        </div>             
+
+                                                    </form>
 
                                             </div>
+                                        </div> <!-- final segunda linea -->
 
-                                            <div class="form-group">
+                                        <div class="panel panel-info"><!-- TERCERA LINEA -->
+                                          <!-- Default panel contents -->
+                                          <div class="panel-heading">Resumen</div>
 
-                                                <label class="col-lg-3 control-label">F.&nbsp;Nacimiento</label>
-
-                                                <div class="col-lg-5">
-                                                  <input type="text" class="form-control" name="fechanac" id="fechanac" value="">
-                                                </div>
-
-                                                <div id="cajafechanacerror">
-                                                    
-                                                </div>
-                                            </div>
+                                          <!-- Table -->
+                                          <table class="table table-bordered table-striped" id="tablaresumen">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Nombre</th>
+                                                        <th>Apellidos</th>
+                                                        <th>Teléfono</th>
+                                                        <th>Fecha Nacimiento</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbodyresumen">
+                                                    <!---DATOS-->
+                                                </tbody> 
+                                            </table>
                                         </div>
-
-                                        <div class="edicion_izquierda"> <!-- IZQUIERDA -->                   
-                                            <button type="button" class="btn btn-nuevo" onclick="NuevoContacto()" title="Nuevo Contacto"><span class="glyphicon glyphicon-plus"></span> Nuevo</button> 
-                                                    
-                                            <button type="button" class="btn btn-guardar" onclick="GuardarContacto()" title="Guardar Contacto"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>  
-                                        </div>             
-
-                                    </form>
-
-                            </div>
-                        </div> <!-- final segunda linea -->
-
-                        <div class="panel panel-info resumen"><!-- TERCERA LINEA -->
-                          <!-- Default panel contents -->
-                          <div class="panel-heading">Resumen</div>
-
-                          <!-- Table -->
-                          <table class="table table-bordered table-striped" id="tablaresumen">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 2%">#</th>
-                                        <th style="width: 20%">Nombre</th>
-                                        <th style="width: 25%">Apellidos</th>
-                                        <th style="width: 4%">Teléfono</th>
-                                        <th style="width: 16%">Fecha Nacimiento</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbodyresumen">
-                                    <!---DATOS-->
-                                </tbody> 
-                            </table>
-                        </div>
-                    
-                </div><!--fin panel body primario-->
-                
-            </div> <!--fin panel primario-->
-
-           
+                                    
+                                </div><!--fin panel body primario-->
+                            
+                            </div><!-- fin row -->
+                    </div> <!--fin panel primario-->  
+                </div>
+                <div class="col-md-2"></div>       
+            </div>  <!--fin row -->
         </div>
         <!-- /#wrapper -->
    
