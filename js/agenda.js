@@ -44,7 +44,7 @@ function GuardarContacto(){
 		
 		Agenda.push(Contacto);//guarda Contacto
 
-		document.getElementById('fin').innerHTML = Agenda.length;//Actualzia el fin de registro
+		document.getElementById('fin').innerHTML = Agenda.length;//Actualiza el fin de registro
 
 		MostrarResumen();
 	}
