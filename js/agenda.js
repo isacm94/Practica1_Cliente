@@ -181,7 +181,11 @@ function ValidacionCorrecta(){
 
 	if(FormularioVacio(LabelError))
 		correcto = false;
-	else {
+
+	if(document.getElementById('telefono').value != "" && ! ValidaTelefono(LabelError))
+		correcto = false;
+
+	if(correcto) {//Si no hay errores, borramos los mensajes de error
 		cajanombreerror.innerHTML = "";
 		cajaapellidoserror.innerHTML = "";
 		cajatelefonoerror.innerHTML = "";
@@ -189,8 +193,7 @@ function ValidacionCorrecta(){
 	}
 
 	
-	/*if(! ValidaTelefono(LabelError))
-		correcto = false;*/
+
 
 	return correcto;
 }
@@ -215,7 +218,7 @@ function FormularioVacio(LabelError){
 		correcto = true;
 	}
 	else{
-		cajanombreerror.innerHTML = "";
+		cajaapellidoserror.innerHTML = "";
 	}
 
 	if(document.getElementById('telefono').value == ""){
@@ -225,7 +228,7 @@ function FormularioVacio(LabelError){
 		correcto = true;
 	}
 	else{
-		cajanombreerror.innerHTML = "";
+		cajatelefonoerror.innerHTML = "";
 	}
 
 	if(document.getElementById('fechanac').value == ""){
@@ -235,7 +238,7 @@ function FormularioVacio(LabelError){
 		correcto = true;
 	}
 	else{
-		cajanombreerror.innerHTML = "";
+		cajafechanacerror.innerHTML = "";
 	}
 
 	if(correcto)
@@ -246,24 +249,25 @@ function FormularioVacio(LabelError){
 
 function ValidaTelefono(LabelError){	
 
-	var telefono = document.getElementById('telefono').value;
+	var telefono = "";
+	telefono = document.getElementById('telefono').value;
 
-	var regexTelefono = new RegExp("/^[9|6|7][0-9]{8}$/");
+	var regexTelefono = new RegExp("^[9|6|7]\\d{8}$");//Tiene que empezar por 9, 6 o 7, seguido de 8 dígitos(del 0 al 9)
 
-	var correcto = regexTelefono.test(telefono);
-
-	if(! correcto)
+	if(! regexTelefono.test(telefono))
 	{
 		document.getElementById('telefono').value = "";
 
-		cajatelefono.innerHTML = LabelError;//Muestra mensaje de error
+		cajatelefonoerror.innerHTML = LabelError;//Muestra mensaje de error
 
 		alert("Formato de teléfono incorrecto");
 
 		return false;
 	}
-	else
+	else{ //correcto
+		cajatelefonoerror.innerHTML = "";
 		return true;
+	}
 }
 
 /*<span class="label label-danger"> <span class="glyphicon glyphicon-exclamation-sign"></span> Error</span>*/

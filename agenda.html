@@ -92,7 +92,7 @@
                                                             
                                                             <div class="row">
                                                                 <div class="col-md-1"></div>
-                                                                <div class="col-md-9">
+                                                                <div class="col-md-10">
                                                                     <button type="button" class="btn btn-default" id="btn_inicioregistro" onclick="BotonInicioRegistro()" title="Inicio Registro"><span class="glyphicon glyphicon-backward"></span></button>
 
                                                                     <button type="button" class="btn btn-default" id="btn_anterior" onclick="BotonAnterior()" title="Anterior"><span class="glyphicon glyphicon-chevron-left"></span></button>
@@ -100,7 +100,7 @@
                                                                     <label class="control-label">&nbsp; 
                                                                         <span name="inicio" id="inicio"> 1 </span>
                                                                             de 
-                                                                        <span name="fin" id="fin"> </span>
+                                                                        <span name="fin" id="fin">&nbsp;&nbsp;</span>
                                                                     &nbsp;</label>
 
 
@@ -177,7 +177,7 @@
                                                                     <label class="col-lg-3 control-label">Teléfono</label>
 
                                                                     <div class="col-lg-5">
-                                                                        <input type="text" class="form-control" name="telefono" id="telefono"  value="">
+                                                                        <input type="text" class="form-control" name="telefono" id="telefono"  value="" maxlength="9">
                                                                     </div>
                                                                     
                                                                     <div id="cajatelefonoerror">
@@ -191,7 +191,7 @@
                                                                     <label class="col-lg-3 control-label">F.&nbsp;Nacimiento</label>
 
                                                                     <div class="col-lg-5">
-                                                                      <input type="text" class="form-control" name="fechanac" id="fechanac" value="">
+                                                                      <input type="text" class="form-control" name="fechanac" id="fechanac" placeholder="dd/mm/aaaa" value="">
                                                                     </div>
 
                                                                     <div id="cajafechanacerror">
