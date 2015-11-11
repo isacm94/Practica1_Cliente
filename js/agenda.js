@@ -185,6 +185,13 @@ function ValidacionCorrecta(){
 	if(document.getElementById('telefono').value != "" && ! ValidaTelefono(LabelError))
 		correcto = false;
 
+	if(document.getElementById('fechanac').value != "" && ! validaFecha(LabelError)){
+		correcto = false;
+	}
+	else
+		alert('holasdfgds');
+
+
 	if(correcto) {//Si no hay errores, borramos los mensajes de error
 		cajanombreerror.innerHTML = "";
 		cajaapellidoserror.innerHTML = "";
@@ -193,7 +200,7 @@ function ValidacionCorrecta(){
 	}
 
 	
-
+	
 
 	return correcto;
 }
@@ -271,3 +278,24 @@ function ValidaTelefono(LabelError){
 }
 
 /*<span class="label label-danger"> <span class="glyphicon glyphicon-exclamation-sign"></span> Error</span>*/
+function validaFecha(LabelError) {
+	var fecha = document.getElementById("fechanac") .value;
+
+	
+	var regexFecha = new RegExp("^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/](19|20)\d{2}$");
+
+	alert(fecha);
+	alert(regexFecha);
+	if(! regexFecha.test(fecha)) {
+		document.getElementById('fechanac').value = "";
+
+		cajafechanacerror.innerHTML = LabelError;//Muestra mensaje de error
+
+		alert("Formato de fecha de nacimiento incorrecto");
+		return false;
+	}
+	else {
+		cajafechanacerror.innerHTML = "";
+		return true;
+	}
+}
