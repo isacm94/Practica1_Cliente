@@ -3,27 +3,13 @@ var Contacto; //{nom: '', apellidos: '', telefono: '', fechanac: ''};
 
 var Agenda = new Array();
 
+var BotonNuevoPulsado = false;
+
 //FUNCIONES
 function CargaDatosIniciales(){
-	Contacto = new Array(4);
 
-	Contacto[0] = 'Luís';
-	Contacto[1] = 'López Pérez'
-	Contacto[2] = '963258741';
-	Contacto[3] = '29/03/1994';
-	
-	Agenda.push(Contacto);//guarda Contacto
+	CargaContactosIniciales();
 
-	MostrarResumen();
-
-	Contacto = new Array(4);
-
-	Contacto[0] = 'Juan';
-	Contacto[1] = 'Pérez López'
-	Contacto[2] = '969555123';
-	Contacto[3] = '23/12/1995';
-	
-	Agenda.push(Contacto);//guarda Contacto
 
 	getUnContacto(1);//Mostramos primer contacto
 
@@ -32,20 +18,83 @@ function CargaDatosIniciales(){
 	document.getElementById('fin').innerHTML = Agenda.length;//mostramos el final del resgistro
 
 }
+function CargaContactosIniciales(){
+
+		//--------------------------
+		Contacto = new Array('Luís', 'López Pérez', '963258741', '29/03/1994');
+		
+		Agenda.push(Contacto);//Guarda Contacto en Agenda
+
+		
+		//--------------------------
+		Contacto = new Array('Juan', 'Pérez López', '969555123', '23/12/1995');
+		
+		Agenda.push(Contacto);//Guarda Contacto en Agenda
+
+
+		//--------------------------
+		Contacto = new Array('Adán', 'Candeas Mozo', '600253146', '08/11/1995');
+		
+		Agenda.push(Contacto);//Guarda Contacto en Agenda
+
+		
+		//--------------------------
+		Contacto = new Array('Amador', 'Rivas García', '977415263', '01/08/1975');
+		
+		Agenda.push(Contacto);//Guarda Contacto en Agenda	
+
+
+		//--------------------------
+		Contacto = new Array('Antonio', 'Recio Ramos', '600874146', '08/11/1995');
+		
+		Agenda.push(Contacto);//Guarda Contacto en Agenda
+		
+		
+		//--------------------------
+		Contacto = new Array('Coque', 'Calatrava Guerrero', '684741525', '23/04/1978');
+		
+		Agenda.push(Contacto);//Guarda Contacto en Agenda
+
+}
 function GuardarContacto(){
 
 	if(ValidacionCorrecta()){
-		Contacto = new Array(4);
 
-		Contacto[0] = document.getElementById('nombre').value;
-		Contacto[1] = document.getElementById('apellidos').value;
-		Contacto[2] = document.getElementById('telefono').value;
-		Contacto[3] = document.getElementById('fechanac').value;
+		if(BotonNuevoPulsado){//Crea un contacto nuevo
+			Contacto = new Array(4);
+
+			Contacto[0] = document.getElementById('nombre').value;
+			Contacto[1] = document.getElementById('apellidos').value;
+			Contacto[2] = document.getElementById('telefono').value;
+			Contacto[3] = document.getElementById('fechanac').value;
+			
+			Agenda.push(Contacto);//guarda Contacto
+
+			document.getElementById('fin').innerHTML = Agenda.length;//Actualiza el fin de registro
 		
-		Agenda.push(Contacto);//guarda Contacto
+			
+			document.getElementById('inicio').innerHTML = Agenda.length;
+			BotonNuevoPulsado = false;
 
-		document.getElementById('fin').innerHTML = Agenda.length;//Actualiza el fin de registro
 
+		}
+		else{//Modificamos el contacto en el que estemos
+
+			//Capturamos la posicion en la que está guardado el contacto
+			var pos = document.getElementById('inicio').innerHTML;
+			pos = pos - 1;
+
+			var ContactoMod = Agenda[pos];
+
+			ContactoMod[0] = document.getElementById('nombre').value;
+			ContactoMod[1] = document.getElementById('apellidos').value;
+			ContactoMod[2] = document.getElementById('telefono').value;
+			ContactoMod[3] = document.getElementById('fechanac').value;
+
+			Agenda[pos] = ContactoMod;
+
+
+		}
 		MostrarResumen();
 	}
 
@@ -53,36 +102,41 @@ function GuardarContacto(){
 
 function MostrarResumen(){
 
-	// Creamos nodos de tipo Element 
-    var tr = document.createElement("tr"); 
-    var td = document.createElement("td"); 
-	
-	var contenido = document.createTextNode(Agenda.length); // Crear nodo de tipo Text 	
+	tbodyresumen.innerHTML="";
 
-	td.appendChild(contenido); // Añadimos al td el contenido
-	tr.appendChild(td); //Añadimos al tr el td
+	for(var i = 0; i < Agenda.length; i++) {
 
-	for(var j = 0; j < 4; j++){ //Recorre cada Contacto
+		// Creamos nodos de tipo Element 
+	    var tr = document.createElement("tr"); 
+	    var td = document.createElement("td"); 
 		
-		var td = document.createElement("td"); 
+		var id = document.createTextNode(i + 1); // Crear nodo de tipo Text con el id
 
-		// Crear nodo de tipo Text 
-		var contenido = document.createTextNode(Contacto[j]); 
+		td.appendChild(id); // Añadimos al td el id
+		tr.appendChild(td); //Añadimos al tr el td
 
-		// Añadir el nodo Text como hijo del nodo 	Element 
-		td.appendChild(contenido); 
 
-		tr.appendChild(td); 
+		for(var j = 0; j < 4; j++){ //Recorre cada Contacto
+			
 
+			var contacto = Agenda[i];	
+			var td = document.createElement("td"); 
+
+			// Crear nodo de tipo Text 
+			var contenido = document.createTextNode(contacto[j]); 
+
+			// Añadir el nodo Text como hijo del nodo 	Element 
+			td.appendChild(contenido); 
+
+			tr.appendChild(td); 
+
+			// Añadir el nodo Element como hijo de la pagina 
+			document.getElementById('tbodyresumen').appendChild(tr);
+
+		}
+
+		
 	}
-
-	// Añadir el nodo Element como hijo de la pagina 
-	document.getElementById('tbodyresumen').appendChild(tr);
-
-	/*
-	for(var i = 0; i < Agenda.length; i++){
-		alert('Agenda '+ i +': '+ Agenda[i]);
-	}*/
 }
 
 function NuevoContacto(){
@@ -90,14 +144,19 @@ function NuevoContacto(){
 	document.getElementById('apellidos').value = "";
 	document.getElementById('telefono').value = "";
 	document.getElementById('fechanac').value = "";
+
+	BotonNuevoPulsado = true;
 }
 
 function getContacto(){
 
-	var pos = document.getElementById('numEntrada').value;
+	var pos = document.getElementById('numEntrada').value;	
+
 	pos--;//en el array es una posición menos
 
 	if(pos >= 0 && pos < Agenda.length){//existe la posición en el array
+
+		document.getElementById('inicio').innerHTML = pos + 1;
 
 		var contacto = new Array(4);
 		contacto = Agenda[pos];//recuperamos el contacto del array
@@ -119,7 +178,6 @@ function getContacto(){
 function getUnContacto(pos){
 	
 	pos--;//en el array es una posición menos
-
 	var contacto = new Array(4);
 	contacto = Agenda[pos];//recuperamos el contacto del array
 	
@@ -185,12 +243,13 @@ function ValidacionCorrecta(){
 	if(document.getElementById('telefono').value != "" && ! ValidaTelefono(LabelError))
 		correcto = false;
 
-	if(document.getElementById('fechanac').value != "" && ! validaFecha(LabelError)){
-		correcto = false;
-	}
-	else
-		alert('holasdfgds');
 
+	
+	if(document.getElementById('fechanac').value != "" && ! ValidaFecha(LabelError)){
+		correcto = false;
+	}	
+	else if (! FechaReal(LabelError))
+		correcto = false;
 
 	if(correcto) {//Si no hay errores, borramos los mensajes de error
 		cajanombreerror.innerHTML = "";
@@ -198,9 +257,6 @@ function ValidacionCorrecta(){
 		cajatelefonoerror.innerHTML = "";
 		cajafechanacerror.innerHTML = "";
 	}
-
-	
-	
 
 	return correcto;
 }
@@ -263,7 +319,7 @@ function ValidaTelefono(LabelError){
 
 	if(! regexTelefono.test(telefono))
 	{
-		document.getElementById('telefono').value = "";
+		//document.getElementById('telefono').value = "";
 
 		cajatelefonoerror.innerHTML = LabelError;//Muestra mensaje de error
 
@@ -278,24 +334,51 @@ function ValidaTelefono(LabelError){
 }
 
 /*<span class="label label-danger"> <span class="glyphicon glyphicon-exclamation-sign"></span> Error</span>*/
-function validaFecha(LabelError) {
+function ValidaFecha(LabelError) {
 	var fecha = document.getElementById("fechanac") .value;
-
 	
-	var regexFecha = new RegExp("^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/](19|20)\d{2}$");
+	var RegExPattern = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
 
-	alert(fecha);
-	alert(regexFecha);
-	if(! regexFecha.test(fecha)) {
-		document.getElementById('fechanac').value = "";
+	if ((fecha.match(RegExPattern)) && (fecha != ''))  {
+		cajafechanacerror.innerHTML = "";
+		return true;
+	}
+
+	else {
+		//document.getElementById('fechanac').value = "";
 
 		cajafechanacerror.innerHTML = LabelError;//Muestra mensaje de error
 
 		alert("Formato de fecha de nacimiento incorrecto");
+
 		return false;
 	}
-	else {
-		cajafechanacerror.innerHTML = "";
-		return true;
-	}
+	
 }
+	
+	function FechaReal(LabelError) {
+		var fecha = document.getElementById("fechanac") .value;
+		var fechaf = fecha.split("/");
+		var d = fechaf[0];
+		var m = fechaf[1];
+		var y = fechaf[2];
+		
+		var correcto =  m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0)).getDate();
+		
+		if(correcto)
+		{
+			cajafechanacerror.innerHTML = "";
+			return true;
+		}
+		else{
+			//document.getElementById('fechanac').value = "";
+
+			cajafechanacerror.innerHTML = LabelError;//Muestra mensaje de error
+
+			alert("Fecha inexistente");
+
+			return false;
+		}
+		
+		return correcto;
+	}
