@@ -17,6 +17,8 @@ function CargaDatosIniciales(){
 
 	document.getElementById('fin').innerHTML = Agenda.length;//mostramos el final del resgistro
 
+	DeshabilitaBotonesRegistro();
+
 }
 function CargaContactosIniciales(){
 
@@ -98,9 +100,15 @@ function GuardarContacto(){
 		MostrarResumen();
 	}
 
+	DeshabilitaBotonesRegistro();
+
+	document.getElementById('btn_eliminar').disabled = false;
+
 }
 
 function MostrarResumen(){
+
+	document.getElementById('resumen').innerHTML = "Resumen" + "<span class='badge pull-right'>"+ Agenda.length + "<span> contactos guardados";
 
 	tbodyresumen.innerHTML="";
 
@@ -146,6 +154,8 @@ function NuevoContacto(){
 	document.getElementById('fechanac').value = "";
 
 	BotonNuevoPulsado = true;
+
+	document.getElementById('btn_eliminar').disabled = true;
 }
 
 function getContacto(){
@@ -190,8 +200,10 @@ function getUnContacto(pos){
 	
 }
 
-//REGISTRO
+//REGISTRO-------------------------------------------------------------------------------------------------------
 function BotonSiguiente(){
+	
+	
 
 	var pos = document.getElementById('inicio').innerHTML;
 	
@@ -202,9 +214,11 @@ function BotonSiguiente(){
 		document.getElementById('inicio').innerHTML = pos;
 		getUnContacto(pos);
 	}
+
+	DeshabilitaBotonesRegistro();
 }
 
-function BotonAnterior(){
+function BotonAnterior(){	
 
 	var pos = document.getElementById('inicio').innerHTML;
 	
@@ -215,22 +229,53 @@ function BotonAnterior(){
 		document.getElementById('inicio').innerHTML = pos;
 		getUnContacto(pos);
 	}
+
+	DeshabilitaBotonesRegistro();
 }
 
-function BotonInicioRegistro(){
+function BotonInicioRegistro(){	
 
 	document.getElementById('inicio').innerHTML = 1;
 	getUnContacto(1);
+
+	DeshabilitaBotonesRegistro();
 }
 
 function BotonFinRegistro(){
 
 	document.getElementById('inicio').innerHTML = Agenda.length;
 	getUnContacto(Agenda.length);
+
+	DeshabilitaBotonesRegistro();
 }
 
+function DeshabilitaBotonesRegistro(){
 
-//Validacion
+	var pos = document.getElementById('inicio').innerHTML;
+
+
+	//Cuando llegue a la ultima posición q se deshabilite el boton
+	if(pos >= Agenda.length){
+		document.getElementById('btn_siguiente').disabled = true;
+		document.getElementById('btn_finregistro').disabled = true;
+	}
+	else{
+		document.getElementById('btn_siguiente').disabled = false;
+		document.getElementById('btn_finregistro').disabled = false;
+	}
+
+	if(pos <= 1){
+		document.getElementById('btn_anterior').disabled = true;
+		document.getElementById('btn_inicioregistro').disabled = true;
+	}
+	else{
+		document.getElementById('btn_anterior').disabled = false;
+		document.getElementById('btn_inicioregistro').disabled = false;
+	}
+
+}
+
+//VALIDACION-------------------------------------------------------------------------------------------------------
 function ValidacionCorrecta(){
 
 	var correcto = true;
@@ -333,7 +378,6 @@ function ValidaTelefono(LabelError){
 	}
 }
 
-/*<span class="label label-danger"> <span class="glyphicon glyphicon-exclamation-sign"></span> Error</span>*/
 function ValidaFecha(LabelError) {
 	var fecha = document.getElementById("fechanac") .value;
 	
@@ -356,7 +400,7 @@ function ValidaFecha(LabelError) {
 	
 }
 	
-	function FechaReal(LabelError) {
+function FechaReal(LabelError) {
 		var fecha = document.getElementById("fechanac") .value;
 		var fechaf = fecha.split("/");
 		var d = fechaf[0];
@@ -382,3 +426,53 @@ function ValidaFecha(LabelError) {
 		
 		return correcto;
 	}
+
+//ELIMINAR------------------------------------------------------------------------------------------------------
+function EliminarContacto(){
+
+	var pos = document.getElementById('inicio').innerHTML;
+
+	pos--;//En el array está guardado en una posición menos
+
+	if(! BotonNuevoPulsado){//si esta el botón nuevo ha sido pulsado no se puede borrar
+		Agenda.splice(pos, 1);
+
+		document.getElementById('fin').innerHTML = Agenda.length;
+		MostrarResumen();
+
+		if(Agenda.length == 0){//Si la agenda se queda sin contactos
+			document.getElementById('inicio').innerHTML = 0;
+
+			document.getElementById('nombre').value = "";
+			document.getElementById('apellidos').value = "";
+			document.getElementById('telefono').value = "";
+			document.getElementById('fechanac').value = "";
+
+			document.getElementById('btn_eliminar').disabled = true;//Desactivamos botón eliminar
+
+			BotonNuevoPulsado = true;//Se puede guardar
+		}
+		else{
+
+			var pos = Agenda.length - 1;
+
+			var contacto = new Array(4);
+			contacto = Agenda[pos];
+			
+			document.getElementById('nombre').value = contacto[0];
+			document.getElementById('apellidos').value = contacto[1];
+			document.getElementById('telefono').value = contacto[2];
+			document.getElementById('fechanac').value = contacto[3];
+
+			document.getElementById('inicio').innerHTML = Agenda.length;
+
+		}
+
+		if(document.getElementById('inicio').innerHTML > Agenda.length)
+		{
+			document.getElementById('inicio').innerHTML = Agenda.length;
+		}
+
+		
+	}
+}

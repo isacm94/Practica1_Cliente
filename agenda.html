@@ -205,6 +205,8 @@
                                                                 <button type="button" class="btn btn-nuevo" onclick="NuevoContacto()" title="Nuevo Contacto"><span class="glyphicon glyphicon-plus"></span> Nuevo</button> 
                                                                         
                                                                 <button type="button" class="btn btn-guardar" onclick="GuardarContacto()" title="Guardar Contacto"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button> 
+
+                                                                <button type="button" class="btn btn-guardar" onclick="EliminarContacto()" id="btn_eliminar" title="Eliminar Contacto"><span class="glyphicon glyphicon-trash"></span> Eliminar</button> 
                                                             </div> 
                                                         </div>             
 
@@ -212,10 +214,11 @@
 
                                             </div>
                                         </div> <!-- final segunda linea -->
+                                        
 
                                         <div class="panel panel-info"><!-- TERCERA LINEA -->
                                           <!-- Default panel contents -->
-                                          <div class="panel-heading">Resumen</div>
+                                          <div class="panel-heading" id="resumen">Resumen</div>
 
                                           <!-- Table -->
                                           <table class="table table-bordered table-striped" id="tablaresumen">
