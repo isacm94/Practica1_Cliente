@@ -1,17 +1,26 @@
-//ARRAY
+/**
+ * [@description]
+ * [@param Parámetro_A]
+ * [@param Parámetro_B] 
+ * [@return Valor_que_retorna] 
+ **/
+//VARIABLES GLOBALES --------------------------------------------------------------------------------------------------
 var Contacto; //{nom: '', apellidos: '', telefono: '', fechanac: ''};
 
 var Agenda = new Array();
 
 var BotonNuevoPulsado = false;
 
-//FUNCIONES
+//FUNCIONES------------------------------------------------------------------------------------------------------------
+
+/**
+ * [@description] Función que muestra los datos necesarios para arrancar la aplicación 
+ **/
 function CargaDatosIniciales(){
 
-	CargaContactosIniciales();
+	CargaContactosIniciales(); //Crea y guarda los contactos
 
-
-	getUnContacto(1);//Mostramos primer contacto
+	getUnContacto(1);//Muestra primer contacto en Editar
 
 	MostrarResumen();
 
@@ -20,6 +29,10 @@ function CargaDatosIniciales(){
 	DeshabilitaBotonesRegistro();
 
 }
+
+/**
+ * [@description] Función que crea los contactos iniciales y los guarda en la Agenda 
+ **/
 function CargaContactosIniciales(){
 
 		//--------------------------
@@ -58,6 +71,143 @@ function CargaContactosIniciales(){
 		Agenda.push(Contacto);//Guarda Contacto en Agenda
 
 }
+
+//***REGISTRO---------------------------------------------------------------------------------------------------------
+
+/**
+ * [@description] Función que muestra en Edición el contacto que tenga como ID el pasado por parámetro
+ * [@param id] ID del contacto que hay que mostrar
+ **/
+function getUnContacto(id){
+	
+	var pos = id - 1;//en el array es una posición menos
+	var contacto = new Array(4);
+	contacto = Agenda[pos];//recuperamos el contacto del array
+	
+	//alert(contacto);
+	//Pasamos el contacto al formulario
+	document.getElementById('nombre').value = contacto[0];
+	document.getElementById('apellidos').value = contacto[1];
+	document.getElementById('telefono').value = contacto[2];
+	document.getElementById('fechanac').value = contacto[3];
+	
+}
+
+/**
+ * [@description] Función que muestra en Edición el siguiente contacto en el paginador de Registro
+ **/
+function BotonSiguiente(){		
+
+	var pos = document.getElementById('inicio').innerHTML + 1;//siguiente posicion
+
+	if(pos <= Agenda.length){
+		document.getElementById('inicio').innerHTML = pos;
+		getUnContacto(pos);
+	}
+
+	DeshabilitaBotonesRegistro();
+}
+
+/**
+ * [@description] Función que muestra en Edición el anterior contacto en el paginador de Registro
+ **/
+function BotonAnterior(){	
+
+	var pos = document.getElementById('inicio').innerHTML - 1;//posición anterior
+
+	if(pos > 0){
+		document.getElementById('inicio').innerHTML = pos;
+		getUnContacto(pos);
+	}
+
+	DeshabilitaBotonesRegistro();
+}
+
+/**
+ * [@description] Función que muestra en Edición el primer contacto
+ **/
+function BotonInicioRegistro(){	
+
+	document.getElementById('inicio').innerHTML = 1;
+	getUnContacto(1);
+
+	DeshabilitaBotonesRegistro();
+}
+
+/**
+ * [@description] Función que muestra en Edición el último contacto
+ **/
+function BotonFinRegistro(){
+
+	document.getElementById('inicio').innerHTML = Agenda.length;
+	getUnContacto(Agenda.length);
+
+	DeshabilitaBotonesRegistro();
+}
+
+/**
+ * [@description] Función que según la posición por la que vaya el paginador de Registor deshabilita o no los botones
+ **/
+function DeshabilitaBotonesRegistro(){
+
+	var pos = document.getElementById('inicio').innerHTML;
+
+	//Cuando llegue a la primera posición deshabilita los botones últimos
+	if(pos <= 1){
+		document.getElementById('btn_anterior').disabled = true;
+		document.getElementById('btn_inicioregistro').disabled = true;
+	}
+	else{
+		document.getElementById('btn_anterior').disabled = false;
+		document.getElementById('btn_inicioregistro').disabled = false;
+	}
+
+	//Cuando llegue a la ultima posición deshabilita los botones últimos
+	if(pos >= Agenda.length){
+		document.getElementById('btn_siguiente').disabled = true;
+		document.getElementById('btn_finregistro').disabled = true;
+	}
+	else{
+		document.getElementById('btn_siguiente').disabled = false;
+		document.getElementById('btn_finregistro').disabled = false;
+	}
+
+}
+
+//MOSTRAR----------------------------------------------------------------------------------------------------------
+
+/**
+ * [@description] Función que muestra en Edición el contacto que corresponda al ID introducido en Mostrar
+ **/
+function getContacto(){
+
+	var pos = document.getElementById('numEntrada').value - 1; //en el array es una posición menos	
+
+
+	if(pos >= 0 && pos < Agenda.length){//existe la posición en el array
+
+		document.getElementById('inicio').innerHTML = pos + 1;
+
+		var contacto = new Array(4);
+		contacto = Agenda[pos];//recuperamos el contacto del array
+		
+		//Pasamos el contacto al formulario
+		document.getElementById('nombre').value = contacto[0];
+		document.getElementById('apellidos').value = contacto[1];
+		document.getElementById('telefono').value = contacto[2];
+		document.getElementById('fechanac').value = contacto[3];
+	}
+	else{
+		document.getElementById('numEntrada').value = "";
+		alert("¡ERROR! No existe el contacto");
+	}
+}
+
+//***EDICIÓN -------------------------------------------------------------------------------------------------------
+
+/**
+ * [@description] Función que crea los contactos iniciales y los guarda en la Agenda 
+ **/
 function GuardarContacto(){
 
 	if(ValidacionCorrecta()){
@@ -102,10 +252,84 @@ function GuardarContacto(){
 
 	DeshabilitaBotonesRegistro();
 
-	document.getElementById('btn_eliminar').disabled = false;
+	document.getElementById('btn_eliminar').disabled = false;//Ya se puede eliminar
 
 }
 
+/**
+ * [@description] Función que borra el contacto que esté mostrando en Edición
+ **/
+function EliminarContacto(){
+
+	var pos = document.getElementById('inicio').innerHTML;
+
+	pos--;//En el array está guardado en una posición menos
+
+	if(! BotonNuevoPulsado){//si esta el botón nuevo ha sido pulsado no se puede borrar
+		Agenda.splice(pos, 1);
+
+		document.getElementById('fin').innerHTML = Agenda.length;
+		MostrarResumen();
+
+		if(Agenda.length == 0){//Si la agenda se queda sin contactos
+			document.getElementById('inicio').innerHTML = 0;
+
+			document.getElementById('nombre').value = "";
+			document.getElementById('apellidos').value = "";
+			document.getElementById('telefono').value = "";
+			document.getElementById('fechanac').value = "";
+
+			document.getElementById('btn_eliminar').disabled = true;//Desactivamos botón eliminar
+
+			BotonNuevoPulsado = true;//Se puede guardar
+		}
+		else{//Agenda con contactos
+
+			var pos = Agenda.length - 1;
+
+			var contacto = new Array(4);
+			contacto = Agenda[pos];
+			
+			document.getElementById('nombre').value = contacto[0];
+			document.getElementById('apellidos').value = contacto[1];
+			document.getElementById('telefono').value = contacto[2];
+			document.getElementById('fechanac').value = contacto[3];
+
+			document.getElementById('inicio').innerHTML = Agenda.length;
+
+		}
+
+		//Para que el inicio nunca sea mayor a el número de contactos guardados
+		if(document.getElementById('inicio').innerHTML > Agenda.length)
+		{
+			document.getElementById('inicio').innerHTML = Agenda.length;
+		}
+		
+	}
+
+	DeshabilitaBotonesRegistro();
+}
+
+/**
+ * [@description] Función que es ejecutada al pulsar el botón "Nuevo" y vacía el formulario de Edición
+ * para poder guardar más contactos
+ **/
+function NuevoContacto(){
+	document.getElementById('nombre').value = "";
+	document.getElementById('apellidos').value = "";
+	document.getElementById('telefono').value = "";
+	document.getElementById('fechanac').value = "";
+
+	BotonNuevoPulsado = true;
+
+	document.getElementById('btn_eliminar').disabled = true;
+}
+
+/***RESUMEN-----------------------------------------------------------------------------------------------------------
+
+/**
+ * [@description] Función que muestra en el resumen todos los datos de los contactos guardados
+ **/
 function MostrarResumen(){
 
 	document.getElementById('resumen').innerHTML = "Resumen" + "<span class='badge pull-right'>"+ Agenda.length + "<span> contactos guardados";
@@ -142,140 +366,16 @@ function MostrarResumen(){
 			document.getElementById('tbodyresumen').appendChild(tr);
 
 		}
-
 		
 	}
 }
 
-function NuevoContacto(){
-	document.getElementById('nombre').value = "";
-	document.getElementById('apellidos').value = "";
-	document.getElementById('telefono').value = "";
-	document.getElementById('fechanac').value = "";
+//***VALIDACION-------------------------------------------------------------------------------------------------------
 
-	BotonNuevoPulsado = true;
-
-	document.getElementById('btn_eliminar').disabled = true;
-}
-
-function getContacto(){
-
-	var pos = document.getElementById('numEntrada').value;	
-
-	pos--;//en el array es una posición menos
-
-	if(pos >= 0 && pos < Agenda.length){//existe la posición en el array
-
-		document.getElementById('inicio').innerHTML = pos + 1;
-
-		var contacto = new Array(4);
-		contacto = Agenda[pos];//recuperamos el contacto del array
-		
-		//alert(contacto);
-		//Pasamos el contacto al formulario
-		document.getElementById('nombre').value = contacto[0];
-		document.getElementById('apellidos').value = contacto[1];
-		document.getElementById('telefono').value = contacto[2];
-		document.getElementById('fechanac').value = contacto[3];
-	}
-	else{
-		document.getElementById('numEntrada').value = "";
-		alert("¡ERROR! No existe el contacto");
-
-	}
-}
-
-function getUnContacto(pos){
-	
-	pos--;//en el array es una posición menos
-	var contacto = new Array(4);
-	contacto = Agenda[pos];//recuperamos el contacto del array
-	
-	//alert(contacto);
-	//Pasamos el contacto al formulario
-	document.getElementById('nombre').value = contacto[0];
-	document.getElementById('apellidos').value = contacto[1];
-	document.getElementById('telefono').value = contacto[2];
-	document.getElementById('fechanac').value = contacto[3];
-	
-}
-
-//REGISTRO-------------------------------------------------------------------------------------------------------
-function BotonSiguiente(){
-	
-	
-
-	var pos = document.getElementById('inicio').innerHTML;
-	
-	pos++;//siguiente posicion
-
-
-	if(pos <= Agenda.length){
-		document.getElementById('inicio').innerHTML = pos;
-		getUnContacto(pos);
-	}
-
-	DeshabilitaBotonesRegistro();
-}
-
-function BotonAnterior(){	
-
-	var pos = document.getElementById('inicio').innerHTML;
-	
-	pos--;//siguiente posicion
-
-
-	if(pos > 0){
-		document.getElementById('inicio').innerHTML = pos;
-		getUnContacto(pos);
-	}
-
-	DeshabilitaBotonesRegistro();
-}
-
-function BotonInicioRegistro(){	
-
-	document.getElementById('inicio').innerHTML = 1;
-	getUnContacto(1);
-
-	DeshabilitaBotonesRegistro();
-}
-
-function BotonFinRegistro(){
-
-	document.getElementById('inicio').innerHTML = Agenda.length;
-	getUnContacto(Agenda.length);
-
-	DeshabilitaBotonesRegistro();
-}
-
-function DeshabilitaBotonesRegistro(){
-
-	var pos = document.getElementById('inicio').innerHTML;
-
-
-	//Cuando llegue a la ultima posición q se deshabilite el boton
-	if(pos >= Agenda.length){
-		document.getElementById('btn_siguiente').disabled = true;
-		document.getElementById('btn_finregistro').disabled = true;
-	}
-	else{
-		document.getElementById('btn_siguiente').disabled = false;
-		document.getElementById('btn_finregistro').disabled = false;
-	}
-
-	if(pos <= 1){
-		document.getElementById('btn_anterior').disabled = true;
-		document.getElementById('btn_inicioregistro').disabled = true;
-	}
-	else{
-		document.getElementById('btn_anterior').disabled = false;
-		document.getElementById('btn_inicioregistro').disabled = false;
-	}
-
-}
-
-//VALIDACION-------------------------------------------------------------------------------------------------------
+/**
+ * [@description] Función que comprueba si los datos introducidos en edición son correctos
+ * [@return correcto] Variable buleana que indica si la validación ha sido correcta
+ **/
 function ValidacionCorrecta(){
 
 	var correcto = true;
@@ -288,13 +388,13 @@ function ValidacionCorrecta(){
 	if(document.getElementById('telefono').value != "" && ! ValidaTelefono(LabelError))
 		correcto = false;
 
-
 	
 	if(document.getElementById('fechanac').value != "" && ! ValidaFecha(LabelError)){
 		correcto = false;
 	}	
 	else if (! FechaReal(LabelError))
 		correcto = false;
+
 
 	if(correcto) {//Si no hay errores, borramos los mensajes de error
 		cajanombreerror.innerHTML = "";
@@ -305,6 +405,12 @@ function ValidacionCorrecta(){
 
 	return correcto;
 }
+
+/**
+ * [@description] Función que comprueba si algún campo está vacío
+ * [@param LabelError] Icono que muestra junto al campo cuando se ha producido un error
+ * [@return correcto] Variable buleana que indica si la validación ha sido correcta
+ **/
 function FormularioVacio(LabelError){
 
 	var correcto = false;
@@ -355,6 +461,11 @@ function FormularioVacio(LabelError){
 	return correcto;
 }
 
+/**
+ * [@description] Función que comprueba si el teléfono introducido sigue el formato español de teléfonos/móviles.
+ * [@param LabelError] Icono que muestra junto al campo cuando se ha producido un error
+ * [@return correcto] Variable buleana que indica si la validación ha sido correcta
+ **/
 function ValidaTelefono(LabelError){	
 
 	var telefono = "";
@@ -364,7 +475,6 @@ function ValidaTelefono(LabelError){
 
 	if(! regexTelefono.test(telefono))
 	{
-		//document.getElementById('telefono').value = "";
 
 		cajatelefonoerror.innerHTML = LabelError;//Muestra mensaje de error
 
@@ -378,6 +488,11 @@ function ValidaTelefono(LabelError){
 	}
 }
 
+/**
+ * [@description] Función que comprueba si la fecha introducida sigue el formato dd/mm/aaaa
+ * [@param LabelError] Icono que muestra junto al campo cuando se ha producido un error
+ * [@return correcto] Variable buleana que indica si la validación ha sido correcta
+ **/
 function ValidaFecha(LabelError) {
 	var fecha = document.getElementById("fechanac") .value;
 	
@@ -399,7 +514,12 @@ function ValidaFecha(LabelError) {
 	}
 	
 }
-	
+
+/**
+ * [@description] Función que comprueba si la fecha introducida existe en el calendario
+ * [@param LabelError] Icono que muestra junto al campo cuando se ha producido un error
+ * [@return correcto] Variable buleana que indica si la validación ha sido correcta
+ **/	
 function FechaReal(LabelError) {
 		var fecha = document.getElementById("fechanac") .value;
 		var fechaf = fecha.split("/");
@@ -427,52 +547,5 @@ function FechaReal(LabelError) {
 		return correcto;
 	}
 
-//ELIMINAR------------------------------------------------------------------------------------------------------
-function EliminarContacto(){
 
-	var pos = document.getElementById('inicio').innerHTML;
 
-	pos--;//En el array está guardado en una posición menos
-
-	if(! BotonNuevoPulsado){//si esta el botón nuevo ha sido pulsado no se puede borrar
-		Agenda.splice(pos, 1);
-
-		document.getElementById('fin').innerHTML = Agenda.length;
-		MostrarResumen();
-
-		if(Agenda.length == 0){//Si la agenda se queda sin contactos
-			document.getElementById('inicio').innerHTML = 0;
-
-			document.getElementById('nombre').value = "";
-			document.getElementById('apellidos').value = "";
-			document.getElementById('telefono').value = "";
-			document.getElementById('fechanac').value = "";
-
-			document.getElementById('btn_eliminar').disabled = true;//Desactivamos botón eliminar
-
-			BotonNuevoPulsado = true;//Se puede guardar
-		}
-		else{
-
-			var pos = Agenda.length - 1;
-
-			var contacto = new Array(4);
-			contacto = Agenda[pos];
-			
-			document.getElementById('nombre').value = contacto[0];
-			document.getElementById('apellidos').value = contacto[1];
-			document.getElementById('telefono').value = contacto[2];
-			document.getElementById('fechanac').value = contacto[3];
-
-			document.getElementById('inicio').innerHTML = Agenda.length;
-
-		}
-
-		if(document.getElementById('inicio').innerHTML > Agenda.length)
-		{
-			document.getElementById('inicio').innerHTML = Agenda.length;
-		}
-
-		
-	}
-}

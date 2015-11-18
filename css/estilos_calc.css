@@ -1,10 +1,3 @@
-.calculadora{
-  margin-top: 10%; 
-  margin-bottom: 25%; 
-  margin-left: 35%; 
-  width: 32%;
-}
-
 /*TABLA*/
 td, tr, table{
  border: 0px solid white;

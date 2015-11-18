@@ -35,7 +35,7 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" style="overflow-x:hidden;" >
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -74,146 +74,155 @@
         
         <!--CUERPO CENTRAL -->
         <div id="page-wrapper">
-            <div class="panel panel-primary calculadora">
+            
+            <div class="container" style="margin-top: 15%; margin-bottom: 15%;">
+                <div class="row">
+                    <div class="col-md-3"></div>
 
-                <div class="panel-heading">Calculadora</div>
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
 
-                <div class="panel-body">
-                    <form>
-                        <table>
-                            <!-- 1 FILA -->
-                            <tr>
-                                <td colspan="5">
-                                    <input type="text" name="resultado1" id="resultado1" value="" readonly>
-                                    <input type="text" name="resultado2" id="resultado2" value="0" readonly>
-                                </td>
-                            </tr>
-                            
-                            <!-- 2 FILA -->
-                            <tr>
-                                <td>
-                                    <button type="button" class="btn btn-deshabilitado" disabled>MC</button>
-                                </td>
+                            <div class="panel-heading">Calculadora</div>
 
-                                <td>
-                                    <button type="button" class="btn btn-deshabilitado" disabled>MR</button>
-                                </td>
-                                
-                                <td>
-                                    <button type="button" class="btn btn-deshabilitado" disabled>MS</button>
-                                </td>
-                                
-                                <td>
-                                    <button type="button" class="btn btn-deshabilitado" disabled>M+</button>
-                                </td>
-                                
-                                <td>
-                                    <button type="button" class="btn btn-deshabilitado" disabled>M-</button>
-                                </td>
-                            </tr>
+                            <div class="panel-body">
+                                <form>
+                                    <table>
+                                        <!-- 1 FILA -->
+                                        <tr>
+                                            <td colspan="5">
+                                                <input type="text" name="resultado1" id="resultado1" value="" readonly>
+                                                <input type="text" name="resultado2" id="resultado2" value="0" readonly>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- 2 FILA -->
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-deshabilitado" disabled>MC</button>
+                                            </td>
 
-                            <!-- 3 FILA -->
-                            <tr>
-                                <td>
-                                    <button type="button" id="" name="flecha" class="btn btn-cambia_resultado" onclick="EjecutaBotonFlecha()">&larr;</button> <!-- flecha -->
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="ce" class="btn btn-cambia_resultado" onclick="EjecutaBotonCE()">CE</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="c" class="btn btn-cambia_resultado" onclick="EjecutaBotonC()">C</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="masmenos" class="btn btn-operacion" onclick="EjecutaBotonMasMenos()">&plusmn;</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="raiz" class="btn btn-operacion" onclick="CalculaRaiz()">&#8730
-                                    </button> <!--Raíz-->
-                                </td>
-                            </tr>
-                            
-                            <!-- 4 FILA -->
-                            <tr>
-                                <td>
-                                    <button type="button" id="siete" name="siete" class="btn btn-numeros" onClick="EjecutaNumeros(7)">7</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="ocho" name="ocho" class="btn btn-numeros" onClick="EjecutaNumeros(8)">8</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="nueve" name="nueve" class="btn btn-numeros" onClick="EjecutaNumeros(9)">9</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="/" class="btn btn-operacion" onClick="EjecutaOperacion('/')">/</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="porcentaje" class="btn btn-operacion" onclick="CalculaPorcentaje()">%</button>
-                                </td>
-                            </tr>
-                            
-                            <!-- 5 FILA -->
-                            <tr>
-                                <td>
-                                    <button type="button" id="cuatro" name="cuatro" class="btn btn-numeros" onClick="EjecutaNumeros(4)">4</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="cinco" name="cinco" class="btn btn-numeros" onClick="EjecutaNumeros(5)">5</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="seis" name="seis" class="btn btn-numeros" onClick="EjecutaNumeros(6)">6</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="multiplicar" class="btn btn-operacion" onClick="EjecutaOperacion('*')">*</button>
-                                </td>
-                                <td>
-                                    <button type="button" id="" name="unox" class="btn  btn-operacion" onclick="CalculaDividirEntreX()">1/x</button>
-                                </td>
-                            </tr>
+                                            <td>
+                                                <button type="button" class="btn btn-deshabilitado" disabled>MR</button>
+                                            </td>
+                                            
+                                            <td>
+                                                <button type="button" class="btn btn-deshabilitado" disabled>MS</button>
+                                            </td>
+                                            
+                                            <td>
+                                                <button type="button" class="btn btn-deshabilitado" disabled>M+</button>
+                                            </td>
+                                            
+                                            <td>
+                                                <button type="button" class="btn btn-deshabilitado" disabled>M-</button>
+                                            </td>
+                                        </tr>
 
-                            <!-- 6 FILA -->
-                            <tr>
-                                <td>
-                                    <button type="button" id="uno" name="uno" class="btn btn-numeros" onClick="EjecutaNumeros(1)">1</button>
-                                </td>
+                                        <!-- 3 FILA -->
+                                        <tr>
+                                            <td>
+                                                <button type="button" id="" name="flecha" class="btn btn-cambia_resultado" onclick="EjecutaBotonFlecha()">&larr;</button> <!-- flecha -->
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="ce" class="btn btn-cambia_resultado" onclick="EjecutaBotonCE()">CE</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="c" class="btn btn-cambia_resultado" onclick="EjecutaBotonC()">C</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="masmenos" class="btn btn-operacion" onclick="EjecutaBotonMasMenos()">&plusmn;</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="raiz" class="btn btn-operacion" onclick="CalculaRaiz()">&#8730
+                                                </button> <!--Raíz-->
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- 4 FILA -->
+                                        <tr>
+                                            <td>
+                                                <button type="button" id="siete" name="siete" class="btn btn-numeros" onClick="EjecutaNumeros(7)">7</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="ocho" name="ocho" class="btn btn-numeros" onClick="EjecutaNumeros(8)">8</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="nueve" name="nueve" class="btn btn-numeros" onClick="EjecutaNumeros(9)">9</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="/" class="btn btn-operacion" onClick="EjecutaOperacion('/')">/</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="porcentaje" class="btn btn-operacion" onclick="CalculaPorcentaje()">%</button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- 5 FILA -->
+                                        <tr>
+                                            <td>
+                                                <button type="button" id="cuatro" name="cuatro" class="btn btn-numeros" onClick="EjecutaNumeros(4)">4</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="cinco" name="cinco" class="btn btn-numeros" onClick="EjecutaNumeros(5)">5</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="seis" name="seis" class="btn btn-numeros" onClick="EjecutaNumeros(6)">6</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="multiplicar" class="btn btn-operacion" onClick="EjecutaOperacion('*')">*</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" id="" name="unox" class="btn  btn-operacion" onclick="CalculaDividirEntreX()">1/x</button>
+                                            </td>
+                                        </tr>
 
-                                <td>
-                                    <button type="button" id="dos" name="dos" class="btn btn-numeros" onClick="EjecutaNumeros(2)">2</button>
-                                </td>
+                                        <!-- 6 FILA -->
+                                        <tr>
+                                            <td>
+                                                <button type="button" id="uno" name="uno" class="btn btn-numeros" onClick="EjecutaNumeros(1)">1</button>
+                                            </td>
 
-                                <td>
-                                    <button type="button" id="tres" name="tres" class="btn btn-numeros" onClick="EjecutaNumeros(3)">3</button>
-                                </td>
+                                            <td>
+                                                <button type="button" id="dos" name="dos" class="btn btn-numeros" onClick="EjecutaNumeros(2)">2</button>
+                                            </td>
 
-                                <td>
-                                    <button type="button" id="" name="restar"  class="btn btn-operacion" onClick="EjecutaOperacion('-')">-</button>
-                                </td>
+                                            <td>
+                                                <button type="button" id="tres" name="tres" class="btn btn-numeros" onClick="EjecutaNumeros(3)">3</button>
+                                            </td>
 
-                                <td rowspan="2">
-                                    <button type="button" id="" name="igual"  class="btn btn-igual" onClick="CalcularRtoFinal()">=</button>
-                                </td>
-                            </tr>
-                            
-                            <!-- 7 FILA -->
-                            <tr>
-                                <td colspan="2">
-                                    <button type="button" id="cero" name="cero" class="btn btn-cero" onClick="EjecutaNumeros(0)">0</button>
-                                </td>
+                                            <td>
+                                                <button type="button" id="" name="restar"  class="btn btn-operacion" onClick="EjecutaOperacion('-')">-</button>
+                                            </td>
 
-                                <td>
-                                    <button type="button" id="punto" name="punto" class="btn btn-numeros" onclick="MuestraPunto()">.</button>
-                                </td>
+                                            <td rowspan="2">
+                                                <button type="button" id="" name="igual"  class="btn btn-igual" onClick="CalcularRtoFinal()">=</button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- 7 FILA -->
+                                        <tr>
+                                            <td colspan="2">
+                                                <button type="button" id="cero" name="cero" class="btn btn-cero" onClick="EjecutaNumeros(0)">0</button>
+                                            </td>
 
-                                <td>
-                                    <button type="button" id="" name="sumar" class="btn btn-operacion" onClick="EjecutaOperacion('+')">+</button>
-                                </td>
-                            </tr>
+                                            <td>
+                                                <button type="button" id="punto" name="punto" class="btn btn-numeros" onclick="MuestraPunto()">.</button>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" id="" name="sumar" class="btn btn-operacion" onClick="EjecutaOperacion('+')">+</button>
+                                            </td>
+                                        </tr>
 
 
-                        </table>
-                    </form>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-    </div>
+        </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
