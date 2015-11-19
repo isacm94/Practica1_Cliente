@@ -1,9 +1,3 @@
-/**
- * [@description]
- * [@param Parámetro_A]
- * [@param Parámetro_B] 
- * [@return Valor_que_retorna] 
- **/
 //VARIABLES GLOBALES --------------------------------------------------------------------------------------------------
 var Contacto; //{nom: '', apellidos: '', telefono: '', fechanac: ''};
 
@@ -84,7 +78,6 @@ function getUnContacto(id){
 	var contacto = new Array(4);
 	contacto = Agenda[pos];//recuperamos el contacto del array
 	
-	//alert(contacto);
 	//Pasamos el contacto al formulario
 	document.getElementById('nombre').value = contacto[0];
 	document.getElementById('apellidos').value = contacto[1];
@@ -501,7 +494,7 @@ function ValidaFecha(LabelError) {
 	if ((fecha.match(RegExPattern)) && (fecha != ''))  {
 		cajafechanacerror.innerHTML = "";
 		return true;
-	}
+	} 
 
 	else {
 		//document.getElementById('fechanac').value = "";

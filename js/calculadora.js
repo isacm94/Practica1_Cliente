@@ -1,11 +1,16 @@
-//VARIABLES 
+sleepslee//VARIABLES GLOBALES------------------------------------------------------------------------------------------------
 var RaizCalculada = false;
 var PorcentajeCalculado = false;
 var EntreXCalculado = false;
 var NuevaOperacion = false;
 
-//FUNCIONES
-function EjecutaOperacion(operacion){
+//FUNCIONES----------------------------------------------------------------------------------------------------------
+
+/**
+ * [@description] Función que muestra las operaciones de suma, resta, división y multiplicación en la pantalla
+ * [@param operador] Símbolo de la operación a mostrar
+ **/
+function MuestraOperacion(operador){
 
 	if(RaizCalculada){//borra todo
 		document.getElementById("resultado1").value = null;
@@ -25,29 +30,32 @@ function EjecutaOperacion(operacion){
 		EntreXCalculado = false;
 	}
 
-	var rto1 =  document.getElementById("resultado1").value;
+	var rdo1 =  document.getElementById("resultado1").value;
 
-	var rto2 = document.getElementById("resultado2").value;	
+	var rdo2 = document.getElementById("resultado2").value;	
 
-	if(rto1 == ''){//si esta vacio
-		document.getElementById("resultado1").value = rto2 + " " + operacion + " ";
+	if(rdo1 == ''){//si esta vacio
+		document.getElementById("resultado1").value = rdo2 + " " + operador + " ";
 	}
-	else /*if(rto1.indexOf(operacion) == -1)*/{			
-			CambioOperacion(operacion);			
+	else{			
+		CambioOperacion(operador);			
 	}
 	
 	document.getElementById("resultado2").value = null; //limpio resultado2, nuevo numero para operar
 }
 
-
+/**
+ * [@description] Función que si se pulsa dos operadores seguidos cambia el primer operador pulsado por el último
+ * [@param operadorNuevo] Segundo operador pulsado
+ **/
 function CambioOperacion(operadorNuevo){
 
-	var rto1 = document.getElementById("resultado1").value;
-	var rto2 = document.getElementById("resultado2").value;
+	var rdo1 = document.getElementById("resultado1").value;
+	var rdo2 = document.getElementById("resultado2").value;
 
 	//obtenemos el ultimo operador introducido
-	var lon = rto1.length;
-	var opeIntroducido = rto1.substring(lon - 2, lon - 1);
+	var lon = rdo1.length;
+	var opeIntroducido = rdo1.substring(lon - 2, lon - 1);
 
 	var esOperador = false;
 
@@ -57,23 +65,25 @@ function CambioOperacion(operadorNuevo){
 		esOperador = true;
 	}
 
-	if(esOperador && /*(opeIntroducido != operadorNuevo) &&*/ rto2==''){//Si el operador introducido es distinto al que se quiere introducir, se cambia
+	if(esOperador && rdo2==''){//Si el operador introducido es distinto al que se quiere introducir, se cambia
 
-		var nuevorto1 = rto1.substring(0, lon - 2);//quitamos el operador introducido
+		var nuevordo1 = rdo1.substring(0, lon - 2);//quitamos el operador introducido
 
-		nuevorto1 += operadorNuevo + ' '; //escribimos el nuevo
+		nuevordo1 += operadorNuevo + ' '; //escribimos el nuevo
 
-		document.getElementById("resultado1").value = nuevorto1;
-		//alert('if');
+		document.getElementById("resultado1").value = nuevordo1;
 	}
 	else{
-		document.getElementById("resultado1").value = rto1/*lo que tenía*/ + document.getElementById("resultado2").value + " " + operadorNuevo + " ";
-		//alert('else');
+		document.getElementById("resultado1").value = rdo1/*lo que tenía*/ + document.getElementById("resultado2").value + " " + operadorNuevo + " ";
 	}
 
 }
 
-function EjecutaNumeros(num){
+/**
+ * [@description] Función que muestra los números en pantalla
+ * [@param num] Número a mostar
+ **/
+function MuestraNumeros(num){
 
 	if(RaizCalculada){//borra todo
 		document.getElementById("resultado1").value = null;
@@ -93,9 +103,9 @@ function EjecutaNumeros(num){
 		EntreXCalculado = false;
 	}
 
-	var rto2 = document.getElementById("resultado2").value;
+	var rdo2 = document.getElementById("resultado2").value;
 
-	if(/*rto2 == null || */ rto2 == "0"){
+	if(rdo2 == "0"){
 
 		if(num != 0)//Si el numero es 0, que no escriba otro 0
 			document.getElementById("resultado2").value = num;
@@ -107,44 +117,30 @@ function EjecutaNumeros(num){
 			NuevaOperacion = false;
 		}
 		else{
-			//rto2 = rto2 * 10; //Se pasa a decimal para poder concatenar más de un número pulsado
-			rto2 += num;
-			document.getElementById("resultado2").value = rto2;
+			rdo2 += num;
+			document.getElementById("resultado2").value = rdo2;
 		}
 		
 	}
 }
 
+/**
+ * [@description] Función que calcula operación introducida en pantalla
+ **/
+function CalcularResultadoFinal(){//boton pulsado igual	
 
-function CalcularRtoFinal(){//boton pulsado igual	
+	var rdofinal = document.getElementById("resultado1").value + document.getElementById("resultado2").value;
 
-	var rtofinal = document.getElementById("resultado1").value + document.getElementById("resultado2").value;
-
-	document.getElementById("resultado1").value = rtofinal;
-
-	document.getElementById("resultado2").value = eval(rtofinal);	
-
-	//sleep(2000); //dormimos 2 segundo para visualizar la operación entera en resultado1
+	document.getElementById("resultado2").value = eval(rdofinal);	
 
 	document.getElementById("resultado1").value = '';
 
 	NuevaOperacion = true;
 }
 
-//http://www.sitepoint.com/delay-sleep-pause-wait/
-function sleep(milliseconds) {
-
-  var start = new Date().getTime();
-
-  for (var i = 0; i < 1e7; i++) {
-
-    if ((new Date().getTime() - start) > milliseconds){
-    	break;
-    }
-  }
-
-}
-
+/**
+ * [@description] Función que elimina el último número introducido
+ **/
 function EjecutaBotonFlecha(){
 	
 	var rto2 = document.getElementById("resultado2").value;
@@ -157,67 +153,83 @@ function EjecutaBotonFlecha(){
 		document.getElementById("resultado2").value = rto2.substring(0, lon - 1);
 }
 
-//Pone a 0 resultado2
+
+
+/**
+ * [@description] Función que pone a 0 el resultado
+ **/
 function EjecutaBotonCE(){
 	document.getElementById("resultado2").value = 0;	
 }
 
-//Elimina resultado1 y pone a 0 resultado2
+
+/**
+ * [@description] Función que elimina inputext resultado1 y pone a 0 el imput text resultado2
+ **/
 function EjecutaBotonC(){
 	document.getElementById("resultado1").value = null;
 	document.getElementById("resultado2").value = 0;
 }
 
-//Cambia el signo del resultado2
+/**
+ * [@description] Función que cambia el signo del resultado
+ **/
 function EjecutaBotonMasMenos(){
 
-	var rto2 = document.getElementById("resultado2").value;
+	var rdo2 = document.getElementById("resultado2").value;
 
-	var rto2 = rto2 * -1;
+	var rdo2 = rdo2 * -1;
 
-	document.getElementById("resultado2").value = rto2;
+	document.getElementById("resultado2").value = rdo2;
 }
 
+/**
+ * [@description] Función que evita que se escriba en la pantalla dos puntos seguidos
+ **/
 function MuestraPunto(){
 
-	var rto2 = document.getElementById("resultado2").value;
-	var rto2float;
+	var rdo2 = document.getElementById("resultado2").value;
+	var rdo2float;
 
-	//document.write(rto2.indexOf("."));
-	if(rto2.indexOf('.') == -1){//Si devuelve -1, no está escrita la coma
+	if(rdo2.indexOf('.') == -1){//Si devuelve -1, no está escrita la coma
 
 		if(document.getElementById("resultado2").value == ""){
-			rto2 = rto2 + '0';
+			rdo2 = rdo2 + '0';
 		}
 		
-		rto2 = rto2 + ".";//Añadimos coma		
+		rdo2 = rdo2 + ".";//Añadimos coma		
 
-		//rto2float = parseFloat(rto2);
-		document.getElementById("resultado2").value = rto2;
+		document.getElementById("resultado2").value = rdo2;
 	}
 }
 
+/**
+ * [@description] Función que calcula la raíz cuadrada del número introducido 
+ **/
 function CalculaRaiz(){
-	var rto2 = document.getElementById("resultado2").value;
+	var rdo2 = document.getElementById("resultado2").value;
 
-	if(rto2 >= 0){
-		var raiz = Math.sqrt(rto2);
+	if(rdo2 >= 0){
+		var raiz = Math.sqrt(rdo2);
 
-		document.getElementById("resultado1").value = "Raíz ("+rto2+")";
+		document.getElementById("resultado1").value = "Raíz ("+rdo2+")";
 		document.getElementById("resultado2").value = raiz;
 	}
 	else{
-		document.getElementById("resultado1").value = "Raíz ("+rto2+")";
+		document.getElementById("resultado1").value = "Raíz ("+rdo2+")";
 		document.getElementById("resultado2").value = "Math error";
 	}
 	RaizCalculada = true;
 }
 
+/**
+ * [@description] Función que calcula el porcentaje de un número
+ **/
 function CalculaPorcentaje(){
 
-	var rto2float = parseFloat(document.getElementById("resultado2").value);//Pasamos resultado2 a float
+	var rdo2float = parseFloat(document.getElementById("resultado2").value);//Pasamos resultado2 a float
 
-	var porcentaje = rto2float / 100;//calculamos porcentaje
+	var porcentaje = rdo2float / 100;//calculamos porcentaje
    	
     document.getElementById("resultado1").value += porcentaje;
 
@@ -227,6 +239,9 @@ function CalculaPorcentaje(){
 	
 }
 
+/**
+ * [@description] Función que calcula el resultado de dividir de 1 entre el número introducido 
+ **/
 function CalculaDividirEntreX(){
 
 	var X = parseFloat(document.getElementById("resultado2").value);//Pasamos resultado2 a float
