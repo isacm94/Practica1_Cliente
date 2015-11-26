@@ -197,6 +197,8 @@ function getContacto(){
 		document.getElementById('numEntrada').value = "";
 		alert("¡ERROR! No existe el contacto");
 	}
+
+	DeshabilitaBotonesRegistro();
 }
 
 //***EDICIÓN -------------------------------------------------------------------------------------------------------
@@ -322,7 +324,7 @@ function NuevoContacto(){
 }
 
 /**
- * [@description] 
+ * [@description] Función que anula operación que se esté llevando a cabo, mostrando los valores iniciales
  **/
 function CancelarOperacion(){
 	getUnContacto(1);
@@ -355,7 +357,7 @@ function MostrarResumen(){
 	    var tr = document.createElement("tr"); 
 	    var td = document.createElement("td"); 
 		
-		var id = document.createTextNode(i + 1); // Crear nodo de tipo Text con el id
+		var id = document.createTextNode(i + 1); // Crea nodo de tipo Text con el id
 
 		td.appendChild(id); // Añadimos al td el id
 		tr.appendChild(td); //Añadimos al tr el td
@@ -367,15 +369,16 @@ function MostrarResumen(){
 			var contacto = Agenda[i];	
 			var td = document.createElement("td"); 
 
-			// Crear nodo de tipo Text 
+			// Guardamos cada campo en contenido
 			var contenido = document.createTextNode(contacto[j]); 
 
-			// Añadir el nodo Text como hijo del nodo 	Element 
+			// Añadimos el contenido al td
 			td.appendChild(contenido); 
 
+			// Añadimos el td al tr
 			tr.appendChild(td); 
 
-			// Añadir el nodo Element como hijo de la pagina 
+			// Añadimos el tr al tbody
 			document.getElementById('tbodyresumen').appendChild(tr);
 
 		}
