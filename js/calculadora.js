@@ -1,4 +1,4 @@
-sleepslee//VARIABLES GLOBALES------------------------------------------------------------------------------------------------
+//VARIABLES GLOBALES------------------------------------------------------------------------------------------------
 var RaizCalculada = false;
 var PorcentajeCalculado = false;
 var EntreXCalculado = false;
@@ -231,11 +231,16 @@ function CalculaPorcentaje(){
 
 	var porcentaje = rdo2float / 100;//calculamos porcentaje
    	
-    document.getElementById("resultado1").value += porcentaje;
+    //document.getElementById("resultado1").value += porcentaje;
 
-    document.getElementById("resultado2").value = porcentaje;
+    //alert(rdo2float);
+    //alert(porcentaje);
 
-	PorcentajeCalculado = true;
+    //document.getElementById("resultado2").value = rdo2float * porcentaje;
+
+    document.getElementById("resultado1").value += rdo2float + '%';
+    document.getElementById("resultado2").value = rdo2float * porcentaje;
+	PorcentajeCalculado = true; 
 	
 }
 

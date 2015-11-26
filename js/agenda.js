@@ -91,11 +91,14 @@ function getUnContacto(id){
  **/
 function BotonSiguiente(){		
 
-	var pos = document.getElementById('inicio').innerHTML + 1;//siguiente posicion
 
+	var pos = ++document.getElementById('inicio').innerHTML;//siguiente posicion
+
+	
 	if(pos <= Agenda.length){
 		document.getElementById('inicio').innerHTML = pos;
 		getUnContacto(pos);
+
 	}
 
 	DeshabilitaBotonesRegistro();
@@ -318,6 +321,23 @@ function NuevoContacto(){
 	document.getElementById('btn_eliminar').disabled = true;
 }
 
+/**
+ * [@description] 
+ **/
+function CancelarOperacion(){
+	getUnContacto(1);
+	document.getElementById('inicio').innerHTML = 1;
+	DeshabilitaBotonesRegistro();
+
+	cajanombreerror.innerHTML = "";
+	cajaapellidoserror.innerHTML = "";
+	cajatelefonoerror.innerHTML = "";
+	cajafechanacerror.innerHTML = "";
+
+	MostrarResumen();
+
+}
+
 /***RESUMEN-----------------------------------------------------------------------------------------------------------
 
 /**
@@ -378,24 +398,25 @@ function ValidacionCorrecta(){
 	if(FormularioVacio(LabelError))
 		correcto = false;
 
-	if(document.getElementById('telefono').value != "" && ! ValidaTelefono(LabelError))
-		correcto = false;
+	else{
+		if(document.getElementById('telefono').value != "" && ! ValidaTelefono(LabelError))
+			correcto = false;
 
-	
-	if(document.getElementById('fechanac').value != "" && ! ValidaFecha(LabelError)){
-		correcto = false;
-	}	
-	else if (! FechaReal(LabelError))
-		correcto = false;
+		
+		if(document.getElementById('fechanac').value != "" && ! ValidaFecha(LabelError)){
+			correcto = false;
+		}	
+		else if (! FechaReal(LabelError))
+			correcto = false;
 
 
-	if(correcto) {//Si no hay errores, borramos los mensajes de error
-		cajanombreerror.innerHTML = "";
-		cajaapellidoserror.innerHTML = "";
-		cajatelefonoerror.innerHTML = "";
-		cajafechanacerror.innerHTML = "";
+		if(correcto) {//Si no hay errores, borramos los mensajes de error
+			cajanombreerror.innerHTML = "";
+			cajaapellidoserror.innerHTML = "";
+			cajatelefonoerror.innerHTML = "";
+			cajafechanacerror.innerHTML = "";
+		}
 	}
-
 	return correcto;
 }
 

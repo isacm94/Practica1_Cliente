@@ -202,39 +202,53 @@
 
                                                             <!--IZQUIERDA -->
                                                             <div class="col-md-2">
-                                                                <button type="button" class="btn btn-nuevo" onclick="NuevoContacto()" title="Nuevo Contacto"><span class="glyphicon glyphicon-plus"></span> Nuevo</button> 
-                                                                        
-                                                                <button type="button" class="btn btn-guardar" onclick="GuardarContacto()" title="Guardar Contacto"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button> 
+                                                                <table class="tabla_botones">
+                                                                    <tr><td>
+                                                                        <button type="button" class="btn btn-nuevo" onclick="NuevoContacto()" title="Nuevo Contacto"><span class="glyphicon glyphicon-plus"></span> Nuevo</button> 
+                                                                    </td></tr>
 
-                                                                <button type="button" class="btn btn-guardar" onclick="EliminarContacto()" id="btn_eliminar" title="Eliminar Contacto"><span class="glyphicon glyphicon-trash"></span> Eliminar</button> 
+                                                                    <tr><td>
+                                                                        <button type="button" class="btn btn-guardar" onclick="GuardarContacto()" title="Guardar Contacto"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button> 
+                                                                    </td></tr>
+
+                                                                    <tr><td>                    
+                                                                        <button type="button" class="btn btn-guardar" onclick="EliminarContacto()" id="btn_eliminar" title="Eliminar Contacto"><span class="glyphicon glyphicon-trash"></span> Eliminar</button> 
+                                                                    </td></tr>
+
+                                                                    <tr><td>
+                                                                        <button type="button" class="btn btn-nuevo" onclick="CancelarOperacion()" title="Cancelar Operación"><span class="glyphicon glyphicon-remove"></span> Cancelar</button> 
+                                                                    </td></tr>
+                                                                </table>
                                                             </div> 
                                                         </div>             
 
                                                     </form>
 
                                             </div>
-                                        </div> <!-- final segunda linea -->
-                                        
+                                        </div> 
+                                            
+                                        <!-- TERCERA LINEA - RESUMEN -->
+                                        <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading" id="resumen">Resumen</div>
 
-                                        <div class="panel panel-info"><!-- TERCERA LINEA -->
-                                          <!-- Default panel contents -->
-                                          <div class="panel-heading" id="resumen">Resumen</div>
-
-                                          <!-- Table -->
-                                          <table class="table table-bordered table-striped" id="tablaresumen">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#ID</th>
-                                                        <th>Nombre</th>
-                                                        <th>Apellidos</th>
-                                                        <th>Teléfono</th>
-                                                        <th>Fecha Nacimiento</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbodyresumen">
-                                                    <!---DATOS-->
-                                                </tbody> 
-                                            </table>
+                                            <div style="">
+                                                <!-- Table -->
+                                                <table class="table table-bordered table-striped" id="tablaresumen">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#ID</th>
+                                                            <th>Nombre</th>
+                                                            <th>Apellidos</th>
+                                                            <th>Teléfono</th>
+                                                            <th>Fecha Nacimiento</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbodyresumen">
+                                                        <!---DATOS-->
+                                                    </tbody> 
+                                                </table>
+                                            </div>
                                         </div>
                                     
                                 </div><!--fin panel body primario-->

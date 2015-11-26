@@ -10,7 +10,7 @@
   color: #000000; 
   background-color: #FFFFFF; 
   border-color: #CCCCCC; 
-  margin-top: 40%;
+  /*margin-top: 40%;*/
 } 
 
 /*CARACTERÍSTICAS DE BOTÓN NUEVO Y GUARDAR */
@@ -45,4 +45,46 @@
 .btn-guardar .badge { 
   color: #FFFFFF; 
   background-color: #000000; 
-} 
+}
+
+.tabla_botones {
+  width: 250px;
+  /*border: 1px solid white;*/
+  border-collapse: collapse;
+   overflow-y: hidden;
+}
+.tabla_botones td {
+  /*border: 1px solid white;*/
+  padding: 5px;
+}
+
+/*TABLA RESUMEN*/
+table {
+    display: flex;
+    flex-flow: column;
+    max-height: 200px;
+    width: calc(100% - 1em);
+}
+table thead {
+    /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+    flex: 0 0 auto;
+    width: calc(100% - 1.2em);
+}
+table #tbodyresumen {
+    /* body takes all the remaining available space */
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: scroll;
+
+
+}
+table tbody tr {
+    width: 100%;
+}
+table thead, table tbody tr {
+    display: table;
+    table-layout: fixed;
+}
+
+
