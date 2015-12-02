@@ -1,3 +1,7 @@
+/*********************************
+Autor: Isabel María Calvo Mateos
+Última modificación: 02/12/2015
+***********************************/
 //VARIABLES GLOBALES------------------------------------------------------------------------------------------------
 var RaizCalculada = false;
 var PorcentajeCalculado = false;
@@ -156,7 +160,7 @@ function EjecutaBotonFlecha(){
 
 
 /**
- * [@description] Función que pone a 0 el resultado
+ * [@description] Función que pone a 0 el resultado2
  **/
 function EjecutaBotonCE(){
 	document.getElementById("resultado2").value = 0;	

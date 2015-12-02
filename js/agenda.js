@@ -1,3 +1,8 @@
+/*********************************
+Autor: Isabel María Calvo Mateos
+Última modificación: 02/12/2015
+***********************************/
+
 //VARIABLES GLOBALES --------------------------------------------------------------------------------------------------
 var Contacto; //{nom: '', apellidos: '', telefono: '', fechanac: ''};
 
